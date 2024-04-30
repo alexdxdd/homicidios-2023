@@ -1,0 +1,74 @@
+---
+title: "Análisis de homicidos cometidos en Costa Rica en 2023"
+author: "Alex Fernandez"
+format: html
+---
+
+# Introducción
+Este documento presenta un connjunto de gráficos de homicidios cometidos en Costa Rica durante el 2023.
+
+# Lectura de datos
+
+```{r}
+#| label: lectura-datos
+
+delitos_2023 <-
+  read.csv("estadisticaspoliciales2023.csv")
+
+```
+# Filtrado de datos de homicidios
+
+```{r}
+#| label: filtrado-homicidios
+
+homicidios_2023 <- delitos_2023[delitos_2023$Delito == "HOMICIDIO", ]
+
+```
+
+# Homicidios por provincia
+
+```{r}
+#| label: grafico-barras-homicidios-x-provincia
+
+#Conteo de homicidios por provincia
+homicidios_x_provincia <- table(homicidios_2023$Provincia)
+
+# Gráfico de barras
+barplot(
+  height = homicidios_x_provincia,
+  las = 2,
+  cex.names = 0.8
+)
+```
+
+# Homicidios por cantón 
+
+```{r}
+#| label: grafico-barras-homicidios-x-canton
+
+# Conteo de homicidios por cantón
+homicidios_x_canton <- table(homicidios_2023$Canton)
+
+# Gráfico de barras
+barplot(
+  height = homicidios_x_canton,
+  las = 2,
+  cex.names = 0.4
+)
+```
+
+# Homicidios por genero
+
+```{r}
+#| label: grafico-barras-homicidios-x-genero
+
+# Conteo de homicidios por genero
+homicidios_x_genero <- table(homicidios_2023$Genero)
+
+# Gráfico de barras
+barplot(
+  height = homicidios_x_genero,
+  las = 2,
+  cex.names = 0.4
+)
+```
